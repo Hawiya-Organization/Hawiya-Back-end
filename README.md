@@ -22,3 +22,4 @@ sudo ./vendor/bin/sail cmd
 sudo ./vendor/bin/sail bash
 ```
 
+#### Check the url http://localhost:8000/ to check if the server runs witout issues
