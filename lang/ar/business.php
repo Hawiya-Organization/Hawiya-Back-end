@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types=1);
+return [
+    'NO DESCRIPTION' => 'لا توجد وصف',
+    'EXPIRED SUBSCRIPTION' => 'الاشتراك منتهي',
+    'NO FREE COURSE AVAILABLE' => 'لا تتوفر دورة مجانية',
+    'COURSE EXPENSIVE' => 'الدورة مكلفة جداً',
+    'NO INVOICE WAS FOUND' => 'لم يتم العثور على فاتورة',
+    'COULD NOT UPLOAD UR FILE' => 'تعذر رفع الملف',
+    'FILE DOES NOT EXIST' => 'الملف غير موجود',
+    'COULD NOT MOVE FILE' => 'تعذر نقل الملف',
+    'FAILED TO CREATE MEETING' => 'فشل إنشاء الاجتماع',
+    'FAILED TO UPDATE MEETING' => 'فشل تحديث الاجتماع',
+    'ALREADY SUBSCRIBED TO COURSE' => 'مشترك بالفعل في الدورة',
+    'YOU CANNOT VIEW THIS COURSE' => 'لا يمكنك مشاهدة هذه الدورة',
+    'ALREADY SUBSCRIBED TO PLAN' => 'مشترك بالفعل في الخطة',
+    'CHARGILY_SERVICE_ERROR' => 'خطأ في خدمة الدفع',
+    'MAXIMUM NUMBER OF PLACES' => 'الحد الأقصى لعدد الأماكن تم الوصول إليه',
+    'YOU CAN NOT RENEW YOUR COURSE SUBSCRIPTION' => 'لا يمكنك تجديد اشتراك الدورة حاليًا',
+    'YOU CAN NOT RENEW YOUR PLAN SUBSCRIPTION' => 'لا يمكنك تجديد اشتراك الخطة حاليًا',
+    'MEETING NOT ENDED' => 'الاجتماع لم ينتهي',
+    'MEETING NOT DELETED' => 'الاجتماع لم يتم حذفه',
+    'MEETING DELETED' => 'تم حذف الاجتماع',
+    'ONLY GOLDEN USERS' => 'فقط للمستخدمين الذهبيين',
+    'ZOOM NETWORK ERROR' => 'خطأ في شبكة زووم',
+    'MEETING OVERLAPE ERROR' => 'تعارض الاجتماع',
+    'PAST MEETING' => 'الاجتماع يجب أن يتم جدولته لتاريخ مستقبلي',
+    'NO COURSE START TIME' => "تاريخ بدء هذه الدورة لم يتم تحديده بعد",
+    'COURSE HAS STUDENTS' => "هذه الدورة لديها طلاب",
+];

@@ -1,0 +1,43 @@
+<?php
+
+declare(strict_types=1);
+return [
+    'FOLLOWED SUCCESSFULY' => 'تم المتابعة بنجاح',
+    'ALREADY FOLLOWED' => 'تم المتابعة بالفعل',
+    'UNFOLLOWED SUCCESSFULY' => 'تم إلغاء المتابعة بنجاح',
+    'NOT FOLLOWED' => 'لم يتم المتابعة',
+    'COMMENT DELETED' => 'تم حذف التعليق',
+    'QUESTION DELETE SUCCESSFULY' => 'تم حذف السؤال بنجاح',
+    'REPLY DELETED SUCCESSFULLY' => 'تم حذف الرد بنجاح',
+    'LINK DELETED' => 'تم حذف الرابط بنجاح',
+    'VOTED SUCCESSFULY' => 'تم التصويت بنجاح',
+    'UNVOTED SUCCESSFULY' => 'تم إلغاء التصويت بنجاح',
+    'SAVED SUCCESSFULY' => 'تم الحفظ بنجاح',
+    'UNSAVED SUCCESSFULY' => 'تم إلغاء الحفظ بنجاح',
+    'SUBSCRIBED SUCCESSFULY' => 'تم الاشتراك بنجاح',
+    'UNSUBSCRIBED SUCCESSFULY' => 'تم إلغاء الاشتراك بنجاح',
+    'USER BANNED SUCCESSFULY' => 'تم حظر المستخدم بنجاح',
+    'USER UNBANNED SUCCESSFULY' => 'تم إلغاء حظر المستخدم بنجاح',
+    'USER SUSPENDED SUCCESSFULY' => 'تم تعليق حساب المستخدم بنجاح',
+    'USER UNSUSPENDED SUCCESSFULY' => 'تم إلغاء تعليق حساب المستخدم بنجاح',
+    'YOU ARE SUSPENDED' => 'لقد تم تعليق حسابك',
+    'YOU ARE BANNED' => 'لقد تم حظر حسابك',
+    'YOU ARE SUSPENDED FOR :days DAYS' => 'لقد تم تعليق حسابك لمدة :days يوم',
+    'PINNED SUCCESSFULY' => 'تم تثبيته بنجاح',
+    'UNPINNED SUCCESSFULY' => 'تم إلغاء التثبيت بنجاح',
+    "CLOSED SUCCESSFULY" => 'تم الإغلاق بنجاح',
+    'OPENED SUCCESSFULY' => 'تم الفتح بنجاح',
+    'REPORTED SUCCESSFULY' => 'تم الإبلاغ بنجاح',
+    'APPROVED SUCCESSFULLY' => 'تم الموافقة بنجاح',
+    'DISAPPROVED SUCCESSFULLY' => 'تم الرفض بنجاح',
+    'NOT IN TEAM' => 'غير موجود في الفريق',
+    'LEFT TEAM SUCCESSFULY' => 'تم الخروج من الفريق بنجاح',
+    'RATING DELETED SUCCESSFULY' => 'تم حذف التقييم بنجاح',
+    'CREATOR CAN NOT LEAVE TEAM, YOU CAN ONLY DELETE IT' => 'لا يمكن للمنشئ مغادرة الفريق ، يمكنك فقط حذفه',
+    'TEAM DELETED SUCCESSFULY' => 'تم حذف الفريق بنجاح',
+    'TEAM DELETION FAILED' => 'فشل حذف الفريق',
+    'EMAIL NOT VERIFIED' => 'يرجى التحقق من عنوان البريد الالكتروني',
+    'USER ALREADY MEMBER OF THIS TEAM' => 'المستخدم عضو بالفعل في هذا الفريق',
+    'SETTINGS UPDATED SUCCESSFULLY' => 'تم تحديث الإعدادات بنجاح'
+];
+
