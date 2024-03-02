@@ -16,8 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::name('api.')
-->group(function () {
+Route::prefix("")->group(function () {
     // here you will find all the routes defined for the v1 api that are under
     RoutesLoader::includeRouteFiles(__DIR__ . '/api');
 

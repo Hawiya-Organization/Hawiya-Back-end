@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\EmailVerificationRequest;
 use App\Http\Requests\Auth\LoginFormRequest;
 use App\Http\Requests\Auth\RegisterFormRequest;
 use Illuminate\Auth\Events\Verified;
@@ -12,9 +13,6 @@ use Illuminate\Support\Facades\Request;
 
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
-
-
-
 
 class AuthController extends Controller
 {
@@ -77,9 +75,8 @@ class AuthController extends Controller
         return response()->json(["message" => __("auth.EMAIL SENT")], 200);
     }
 
-    public function handleEmailVerificationRedirection(Request $request, string $id)
+    public function handleEmailVerificationRedirection(EmailVerificationRequest $request, string $id)
     {
-
         if (!$request->hasValidSignature()) {
             return response()->json(["message" => __("auth.INVALID URL")], 401);
         }
