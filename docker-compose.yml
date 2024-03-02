@@ -1,7 +1,9 @@
 services:
     laravel.test:
+        container_name: hawiya-server
         build:
             context: ./vendor/laravel/sail/runtimes/8.3
+
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
@@ -27,6 +29,7 @@ services:
             - soketi
             - minio
     pgsql:
+        container_name: hawiya-pgsql
         image: 'postgres:latest'
         expose:
             - '${DB_PORT:-5432}'
@@ -52,6 +55,7 @@ services:
             retries: 3
             timeout: 5s
     pgadmin:
+        container_name: hawiya-pgadmin
         image: dpage/pgadmin4
         ports:
             - '8888:80'
@@ -63,6 +67,7 @@ services:
         volumes:
             - 'pgadmin-data:/var/lib/pgadmin'
     redis:
+        container_name: hawiya-redis
         image: 'redis:alpine'
         expose:
             - '${REDIS_PORT:-6379}'
@@ -78,6 +83,7 @@ services:
             retries: 3
             timeout: 5s
     mailpit:
+        container_name: hawiya-mailpit
         image: 'axllent/mailpit:latest'
         ports:
             - '${MAILPIT_PORT:-1025}:1025'
@@ -85,6 +91,7 @@ services:
         networks:
             - sail
     soketi:
+        container_name: hawiya-soketi
         image: 'quay.io/soketi/soketi:latest-16-alpine'
         environment:
             SOKETI_DEBUG: '${SOKETI_DEBUG:-1}'
@@ -98,6 +105,7 @@ services:
         networks:
             - sail
     minio:
+        container_name: hawiya-minio
         image: 'minio/minio:latest'
         ports:
             - '${MINIO_PORT:-9000}:9000'
