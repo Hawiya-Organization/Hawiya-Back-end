@@ -52,4 +52,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasManyThrough(Bayt::class, Poem::class);
     }
+
+
+    public function savedPoems()
+    {
+        return $this->belongsToMany(Poem::class, 'user_poem')->withPivot([
+            'created_at'
+        ]);
+    }
 }

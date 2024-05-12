@@ -64,6 +64,42 @@ class PoemController extends Controller
     }
 
 
+    public function save(Poem $poem)
+    {
+        /**
+         * @var User $user
+         */
+        $user= request()->user();
+
+        $user->savedPoems()->attach($poem);
+
+        return new PoemResource($poem);
+    }
+
+    public function unsave(Poem $poem)
+    {
+        /**
+         * @var User $user
+         */
+        $user= request()->user();
+
+        $user->savedPoems()->detach($poem);
+
+        return new PoemResource($poem);
+    }
+
+
+    public function savedPoems()
+    {
+        /**
+         * @var User $user
+         */
+        $user= request()->user();
+
+        return PoemResource::collection($user->savedPoems()->paginate());
+    }
+
+
     /**
      * Update the specified resource in storage.
      */
@@ -74,6 +110,7 @@ class PoemController extends Controller
             'bahr_type_id' => 'exists:bahr_types,id',
             'is_hor' => 'boolean'
         ]);
+
         $this->authorize('owner', $poem);
         $poem->update($data);
         return new PoemResource($poem);
