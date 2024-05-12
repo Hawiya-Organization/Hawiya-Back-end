@@ -11,7 +11,6 @@ Route::controller(AuthController::class)->prefix('auth')
         Route::post('login', 'login');
         Route::post('register', 'register');
         Route::post('logout', 'logout');
-        Route::post('forgot-password', 'forgotPassword');
 
         Route::prefix("email")
             ->group(

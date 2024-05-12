@@ -60,9 +60,7 @@ class AuthController extends Controller
 
     }
 
-    public function forgotPassword(){
 
-    }
 
     public function resendEmailVerificationLink()
     {
