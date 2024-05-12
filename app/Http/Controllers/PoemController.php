@@ -89,6 +89,16 @@ class PoemController extends Controller
     }
 
 
+    public function myPoems()
+    {
+        /**
+         * @var User $user
+         */
+        $user= request()->user();
+
+        return PoemResource::collection($user->poems()->paginate());
+    }
+
     public function savedPoems()
     {
         /**

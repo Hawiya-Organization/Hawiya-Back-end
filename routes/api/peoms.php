@@ -17,6 +17,7 @@ Route::controller(PoemController::class)->prefix('poems')
                 Route::post('/{poem}/save', 'save');
                 Route::delete('/{poem}/unsave', 'unsave');
                 Route::get('/saved-poems', 'savedPoems');
+                Route::get('/my-poems', 'myPoems');
             });
 
         Route::get('/{poem}', 'show');
