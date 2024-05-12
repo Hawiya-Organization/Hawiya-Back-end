@@ -22,6 +22,6 @@ class PoemPolicy
         if($poem->authorable_type === Author::class){
             return false;
         }
-        return $user->id === $poem->author_id;
+        return $user->id === $poem->authorable_id;
     }
 }

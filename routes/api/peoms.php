@@ -10,8 +10,8 @@ Route::controller(PoemController::class)->prefix('poems')
         function () {
         Route::get('/', 'index');
         Route::post('/', 'store')->middleware('auth:sanctum');
-        Route::get('/{id}', 'show');
-        Route::put('/{id}', 'update')->middleware('auth:sanctum');
+        Route::get('/{poem}', 'show');
+        Route::put('/{poem}', 'update')->middleware('auth:sanctum');
         Route::delete('/{poem}', 'destroy')->middleware('auth:sanctum');
         }
     );

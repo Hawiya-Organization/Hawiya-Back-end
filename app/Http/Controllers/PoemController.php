@@ -17,7 +17,7 @@ class PoemController extends Controller
     public function index()
     {
 
-        return  PoemResource::collection( Poem::with('bayts')->paginate());
+        return  PoemResource::collection( Poem::paginate());
 
     }
 
@@ -57,23 +57,24 @@ class PoemController extends Controller
     }
 
 
-    public function show(string $id)
+    public function show(Poem $poem)
     {
-        return new PoemResource(Poem::find($id)->with(['bayts', 'author']));
+        $poem->load('bayts');
+        return new PoemResource($poem);
     }
 
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Poem $poem)
     {
         $data = $request->validate([
             'title' => 'string',
             'bahr_type_id' => 'exists:bahr_types,id',
             'is_hor' => 'boolean'
         ]);
-        $poem = Poem::find($id);
+        $this->authorize('owner', $poem);
         $poem->update($data);
         return new PoemResource($poem);
     }
@@ -83,7 +84,10 @@ class PoemController extends Controller
      */
     public function destroy(Poem $poem)
     {
+
+        $this->authorize('owner', $poem);
         $poem->delete();
+
         return response()->json(['message' => 'Poem deleted successfully', 'resource' => $poem], 200);
     }
 }
