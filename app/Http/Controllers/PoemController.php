@@ -32,6 +32,7 @@ class PoemController extends Controller
         $data = $request->validate([
             'title' => 'required|string',
             'bahr_type_id' => 'required|exists:bahr_types,id',
+            'kafiya_ids'=>'required|exists:kafiyas,id',
             'is_hor' => 'required|boolean',
             'bayts' => 'required|array',
             'bayts.*.bayt_type' => 'required|integer|min:1|max:3',

@@ -18,8 +18,8 @@ class AuthorController extends Controller
     {
 
         $randomAuthors=Author::inRandomOrder()->limit(10)->get();
-        $randomUsers= User::whereHas('poems')->inRandomOrder()->limit(10)->get();
-        return  AuthorResource::collection( $randomAuthors->merge($randomUsers));
+        //$randomUsers= User::whereHas('poems')->inRandomOrder()->limit(10)->get();
+        return  AuthorResource::collection( $randomAuthors);
 
     }
 

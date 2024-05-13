@@ -14,11 +14,7 @@ class PoemResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-
-
-
         return [
-
             'id' => $this->id,
             'title' => $this->title,
             'author_name' => $this->authorable?->name,
@@ -26,8 +22,9 @@ class PoemResource extends JsonResource
             'bayts' => $this->whenLoaded('bayts'),
             'bahr_type' => $this->bahrType->name,
             'is_hor' => $this->is_hor,
-
-
+            'asr'=>$this->asr->name,
+            'diwan'=>$this->diwan->name,
+            'kafiya'=>$this->kafiya->name
         ];
     }
 }
