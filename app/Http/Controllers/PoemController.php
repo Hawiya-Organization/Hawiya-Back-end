@@ -53,9 +53,15 @@ class PoemController extends Controller
                 'kafiya_id' => 'required|exists:kafiyas,id',
             ]);
         }
+
         $poem = $user->poems()->create($data);
 
-        $poem->bayts()->createMany($data['bayts']);
+
+        $bayts=$data['bayts'];
+
+        foreach ($bayts as $bayt) {
+            $poem->bayts()->create(['content'=>json_encode($bayt['content'])]);
+        }
         $poem->load('bayts');
         return new PoemResource($poem);
     }
