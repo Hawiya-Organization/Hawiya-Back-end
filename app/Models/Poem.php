@@ -11,7 +11,7 @@ class Poem extends Model
 
 
     protected $with =  ['authorable','bahrType','kafiya','asr','diwan'];
-    protected $fillable = ['title',
+    protected $fillable = ['title','id',
      'authorable_id', 'authorable_type',
      'bahr_type_id','is_hor','asr_id','kafiya_id','diwan_id'];
 
