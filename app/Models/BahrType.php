@@ -16,10 +16,6 @@ class BahrType extends Model
     {
         return $this->hasMany(Poem::class);
     }
-    public function bayts()
-    {
-        return $this->hasManyThrough(Bayt::class, Poem::class);
-    }
 
 }
 

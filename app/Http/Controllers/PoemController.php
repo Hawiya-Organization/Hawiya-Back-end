@@ -17,8 +17,7 @@ class PoemController extends Controller
     public function index()
     {
 
-        return  PoemResource::collection( Poem::paginate());
-
+        return  PoemResource::collection(Poem::paginate());
     }
 
 
@@ -31,15 +30,15 @@ class PoemController extends Controller
         $user = request()->user();
         $data = $request->validate([
             'title' => 'required|string',
-            'bahr_type_id' => 'required|exists:bahr_types,id',
-            'kafiya_ids'=>'required|exists:kafiyas,id',
+            'bahr_type_id' => 'exists:bahr_types,id',
+            'kafiya_id' => 'exists:kafiyas,id',
             'is_hor' => 'required|boolean',
             'bayts' => 'required|array',
-            'bayts.*.bayt_type' => 'required|integer|min:1|max:3',
-            'bayts.*.content' => 'required|string',
-            'bayts.*.number' => 'required|integer'// the line number
+            'bayts.*.content.bayt_type' => 'required|integer|min:1|max:3',
+            'bayts.*.content.text' => 'required|string',
+            'bayts.*.content.number' => 'required|integer' // the line number
         ]);
-        if ($data['is_hor'] ) {
+        if ($data['is_hor']) {
             // for the hor poem only one bayt is allowed(standlalone ttpe)
             $request->validate([
                 'bayts.*.bayt_type' => 'integer|min:3|max:3'
@@ -48,7 +47,11 @@ class PoemController extends Controller
             $request->validate([
                 'bayts.*.number' => 'distinct'
             ]);
-
+        } else {
+            $request->validate([
+                'bahr_type_id' => 'required|exists:bahr_types,id',
+                'kafiya_id' => 'required|exists:kafiyas,id',
+            ]);
         }
         $poem = $user->poems()->create($data);
 
@@ -56,7 +59,6 @@ class PoemController extends Controller
         $poem->load('bayts');
         return new PoemResource($poem);
     }
-
 
     public function show(Poem $poem)
     {
@@ -70,7 +72,7 @@ class PoemController extends Controller
         /**
          * @var User $user
          */
-        $user= request()->user();
+        $user = request()->user();
 
         $user->savedPoems()->attach($poem);
 
@@ -82,7 +84,7 @@ class PoemController extends Controller
         /**
          * @var User $user
          */
-        $user= request()->user();
+        $user = request()->user();
 
         $user->savedPoems()->detach($poem);
 
@@ -95,7 +97,7 @@ class PoemController extends Controller
         /**
          * @var User $user
          */
-        $user= request()->user();
+        $user = request()->user();
 
         return PoemResource::collection($user->poems()->paginate());
     }
@@ -105,7 +107,7 @@ class PoemController extends Controller
         /**
          * @var User $user
          */
-        $user= request()->user();
+        $user = request()->user();
 
         return PoemResource::collection($user->savedPoems()->paginate());
     }

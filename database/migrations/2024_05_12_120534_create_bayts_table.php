@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('bayts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('poem_id')->constrained()->onDelete('cascade');
-            $table->string('content');
-            $table->integer('number');
-            $table->integer('bayt_type'); // either sadr or Ajuz or standalone
+            $table->json('content');
             $table->timestamps();
         });
     }

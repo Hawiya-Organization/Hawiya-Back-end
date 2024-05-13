@@ -20,11 +20,11 @@ class PoemResource extends JsonResource
             'author_name' => $this->authorable?->name,
             'bio' => $this->authorable?->bio,
             'bayts' => $this->whenLoaded('bayts'),
-            'bahr_type' => $this->bahrType->name,
+            'bahr_type' => $this->bahrType?->name,
             'is_hor' => $this->is_hor,
-            'asr'=>$this->asr->name,
-            'diwan'=>$this->diwan->name,
-            'kafiya'=>$this->kafiya->name
+            'asr'=>$this->asr?->name,
+            'diwan'=>$this->diwan?->name,
+            'kafiya'=>$this->kafiya?->name
         ];
     }
 }
