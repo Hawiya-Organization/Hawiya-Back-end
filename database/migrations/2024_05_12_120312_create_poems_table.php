@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('poems', function (Blueprint $table) {
             $table->id();
-            $table->morphs('authorable');
-            $table->string('title');
-            $table->foreignId('bahr_type_id');
+            $table->nullableMorphs('authorable');
+            $table->string('title')->nullable();
+            $table->foreignId('bahr_type_id')->nullable();
             $table->boolean('is_hor')->default(false);
             $table->timestamps();
         });

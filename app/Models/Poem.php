@@ -10,10 +10,12 @@ class Poem extends Model
     use HasFactory;
 
 
-    protected $with =  ['authorable','bahrType','kafiya','asr','diwan'];
-    protected $fillable = ['title','id',
-     'authorable_id', 'authorable_type',
-     'bahr_type_id','is_hor','asr_id','kafiya_id','diwan_id'];
+    protected $with =  ['authorable', 'bahrType', 'kafiya', 'asr', 'diwan'];
+    protected $fillable = [
+        'title',
+        'authorable_id', 'authorable_type',
+        'bahr_type_id', 'is_hor', 'asr_id', 'kafiya_id', 'diwan_id'
+    ];
 
     // either author or user can be the author of the poem
     public function authorable()
@@ -31,14 +33,16 @@ class Poem extends Model
         return $this->hasMany(Bayt::class);
     }
 
-    public function kafiya(){
+    public function kafiya()
+    {
         return $this->belongsTo(Kafiya::class);
     }
-    public function asr(){
+    public function asr()
+    {
         return $this->belongsTo(Asr::class);
     }
-    public function diwan(){
+    public function diwan()
+    {
         return $this->belongsTo(Diwan::class);
     }
 }
-

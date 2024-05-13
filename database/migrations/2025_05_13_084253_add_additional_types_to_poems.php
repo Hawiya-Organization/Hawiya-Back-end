@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('poems', function (Blueprint $table) {
-            $table->foreignId('kafiya')->nullable();
+            $table->foreignId('kafiya_id')->nullable();
             $table->foreignId('asr_id')->nullable();
             $table->foreignId('diwan_id')->nullable();
 
