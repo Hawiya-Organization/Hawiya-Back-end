@@ -18,7 +18,7 @@ class PoemResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'author_name' => $this->authorable?->name,
-            'bio' => $this->authorable?->bio,
+            'author_bio' => $this->authorable?->bio,
             'bayts' => BaytResource::collection($this->whenLoaded('bayts')),
             'bahr_type' => $this->bahrType?->name,
             'is_hor' => $this->is_hor,

@@ -34,33 +34,26 @@ class PoemController extends Controller
             'kafiya_id' => 'exists:kafiyas,id',
             'is_hor' => 'required|boolean',
             'bayts' => 'required|array',
-            'bayts.*.content.bayt_type' => 'required|integer|min:1|max:3',
-            'bayts.*.content.text' => 'required|string',
-            'bayts.*.content.number' => 'required|integer' // the line number
+            'bayts.*.content.sadr' => 'string',
+            'bayts.*.content.ajoz' => 'string',
+            'bayts.*.content.number' => 'required|integer|distinct' // the line number
         ]);
-        if ($data['is_hor']) {
-            // for the hor poem only one bayt is allowed(standlalone ttpe)
+        if (!$data['is_hor']) {
+
             $request->validate([
-                'bayts.*.bayt_type' => 'integer|min:3|max:3'
-            ]);
-            // the number shold be unique in the request for the case of the hor type
-            $request->validate([
-                'bayts.*.number' => 'distinct'
-            ]);
-        } else {
-            $request->validate([
-                'bahr_type_id' => 'required|exists:bahr_types,id',
-                'kafiya_id' => 'required|exists:kafiyas,id',
+                'bayts.*.content.sadr' => 'string|required',
+                'bayts.*.content.ajoz' => 'string|required',
+
             ]);
         }
 
         $poem = $user->poems()->create($data);
 
 
-        $bayts=$data['bayts'];
+        $bayts = $data['bayts'];
 
         foreach ($bayts as $bayt) {
-            $poem->bayts()->create(['content'=>json_encode($bayt['content'])]);
+            $poem->bayts()->create(['content' => json_encode($bayt['content'])]);
         }
         $poem->load('bayts');
         return new PoemResource($poem);

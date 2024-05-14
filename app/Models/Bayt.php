@@ -9,7 +9,7 @@ class Bayt extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['content', 'poem_id'];
+    protected $fillable = ['content', 'poem_id','id'];
 
     public function poem(){
         return $this->belongsTo(Poem::class);
