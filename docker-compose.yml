@@ -1,13 +1,13 @@
 services:
     laravel.test:
         container_name: hawiya-server
-        build:
-            context: ./vendor/laravel/sail/runtimes/8.3
-
-            dockerfile: Dockerfile
-            args:
-                WWWGROUP: '${WWWGROUP}'
-        image: sail-8.3/app
+        image: raidlol/hawiya
+        #build:
+        #    context: ./Docker
+        #    dockerfile: Dockerfile
+        #    args:
+        #        WWWGROUP: '${WWWGROUP}'
+        #image: sail-8.3/app
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
@@ -26,11 +26,11 @@ services:
             - pgsql
             - redis
             - mailpit
-            - soketi
-            - minio
+            #- soketi
+            #- minio
     pgsql:
         container_name: hawiya-pgsql
-        image: 'postgres:latest'
+        image: raidlol/hawiya-db
         ports:
             - '${DB_PORT:-5432}:5432'
         environment:
@@ -54,18 +54,18 @@ services:
                 - '${DB_USERNAME}'
             retries: 3
             timeout: 5s
-    pgadmin:
-        container_name: hawiya-pgadmin
-        image: dpage/pgadmin4
-        ports:
-            - '8888:80'
-        environment:
-            PGADMIN_DEFAULT_EMAIL: hawiya@example.com
-            PGADMIN_DEFAULT_PASSWORD: pass
-        depends_on:
-            - pgsql
-        volumes:
-            - 'pgadmin-data:/var/lib/pgadmin'
+    #pgadmin:
+    #    container_name: hawiya-pgadmin
+    #    image: dpage/pgadmin4
+    #    ports:
+    #        - '8888:80'
+    #    environment:
+    #        PGADMIN_DEFAULT_EMAIL: hawiya@example.com
+    #        PGADMIN_DEFAULT_PASSWORD: pass
+    #    depends_on:
+    #        - pgsql
+    #    volumes:
+    #        - 'pgadmin-data:/var/lib/pgadmin'
     redis:
         container_name: hawiya-redis
         image: 'redis:alpine'
@@ -90,48 +90,49 @@ services:
             - '${MAILPIT_DASHBOARD_PORT:-8025}:8025'
         networks:
             - sail
-    soketi:
-        container_name: hawiya-soketi
-        image: 'quay.io/soketi/soketi:latest-16-alpine'
-        environment:
-            SOKETI_DEBUG: '${SOKETI_DEBUG:-1}'
-            SOKETI_METRICS_SERVER_PORT: '9601'
-            SOKETI_DEFAULT_APP_ID: '${PUSHER_APP_ID}'
-            SOKETI_DEFAULT_APP_KEY: '${PUSHER_APP_KEY}'
-            SOKETI_DEFAULT_APP_SECRET: '${PUSHER_APP_SECRET}'
-        ports:
-            - '${PUSHER_PORT:-6001}:6001'
-            - '${PUSHER_METRICS_PORT:-9601}:9601'
-        networks:
-            - sail
-    minio:
-        container_name: hawiya-minio
-        image: 'minio/minio:latest'
-        ports:
-            - '${MINIO_PORT:-9000}:9000'
-            - '${MINIO_CONSOLE_PORT:-8900}:8900'
-        environment:
-            MINIO_ROOT_USER: sail
-            MINIO_ROOT_PASSWORD: password
-        volumes:
-            - 'sail-minio:/data/minio'
-        networks:
-            - sail
-        command: 'minio server /data/minio --console-address ":8900"'
-        healthcheck:
-            test:
-                - CMD
-                - curl
-                - '-f'
-                - 'http://localhost:9000/minio/health/live'
-            retries: 3
-            timeout: 5s
+    #soketi:
+    #    container_name: hawiya-soketi
+    #    image: 'quay.io/soketi/soketi:latest-16-alpine'
+    #    environment:
+    #        SOKETI_DEBUG: '${SOKETI_DEBUG:-1}'
+    #        SOKETI_METRICS_SERVER_PORT: '9601'
+    #        SOKETI_DEFAULT_APP_ID: '${PUSHER_APP_ID}'
+    #        SOKETI_DEFAULT_APP_KEY: '${PUSHER_APP_KEY}'
+    #        SOKETI_DEFAULT_APP_SECRET: '${PUSHER_APP_SECRET}'
+    #    ports:
+    #        - '${PUSHER_PORT:-6001}:6001'
+    #        - '${PUSHER_METRICS_PORT:-9601}:9601'
+    #    networks:
+    #        - sail
+    #minio:
+    #    container_name: hawiya-minio
+    #    image: 'minio/minio:latest'
+    #    ports:
+    #        - '${MINIO_PORT:-9000}:9000'
+    #        - '${MINIO_CONSOLE_PORT:-8900}:8900'
+    #    environment:
+    #        MINIO_ROOT_USER: sail
+    #        MINIO_ROOT_PASSWORD: password
+    #    volumes:
+    #        - 'sail-minio:/data/minio'
+    #    networks:
+    #        - sail
+    #    command: 'minio server /data/minio --console-address ":8900"'
+    #    healthcheck:
+    #        test:
+    #            - CMD
+    #            - curl
+    #            - '-f'
+    #            - 'http://localhost:9000/minio/health/live'
+    #        retries: 3
+    #        timeout: 5s
 
     search:
-     build:
-       context: ./Search
-       dockerfile: Dockerfile
-     container_name: hawiya-search
+     #build:
+     #  context: ./Search
+     #  dockerfile: Dockerfile
+     #container_name: hawiya-search
+     image: raidlol/hawiya-search
      command: uvicorn app.main:app --host 0.0.0.0 --port 80 --reload
      working_dir: /code
      volumes:
@@ -149,7 +150,7 @@ volumes:
         driver: local
     sail-redis:
         driver: local
-    pgadmin-data:
-        driver: local
-    sail-minio:
-        driver: local
+    #pgadmin-data:
+    #    driver: local
+    #sail-minio:
+    #    driver: local
